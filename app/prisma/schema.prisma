@@ -15,32 +15,35 @@ datasource db {
 
 
 model User {
-  id String @id @default(uuid())
-  email String  @unique
-  provider Provider
-  role Role
-  streams Stream[]
-  upvotes Upvote[]
+  id        String    @id @default(uuid())
+  email     String    @unique
+  provider  Provider
+  role      Role
+  streams   Stream[]
+  upvotes   Upvote[]
 }
 
 
 model Stream {
-  id String @id @default(uuid())
-  type StreamType
-  url String
-  extractedId String
-  active Boolean @default(true)
-  upvotes Upvote[]
-  userId String 
-  user User  @relation(fields: [userId], references: [id])
+  id            String   @id @default(uuid())
+  type          StreamType
+  url           String
+  extractedId   String
+  title         String   @default("")
+  smallImg      String   @default("")
+  bigImage      String   @default("")
+  active        Boolean  @default(true)
+  upvotes       Upvote[]
+  userId        String 
+  user          User     @relation(fields: [userId], references: [id])
 }
 
 model Upvote {
-  id  String @id @default(uuid())
-  userId String
-  streamId String 
-  user  User @relation(fields: [userId], references: [id])
-  stream Stream @relation(fields: [streamId], references: [id])
+  id         String   @id @default(uuid())
+  userId     String
+  streamId   String 
+  user       User     @relation(fields: [userId], references: [id])
+  stream     Stream   @relation(fields: [streamId], references: [id])
   @@unique([userId, streamId])
 }
 
@@ -50,14 +53,10 @@ enum StreamType {
   Youtube
 }
 
-
 enum Role {
   Streamer
   EndUser
 }
-
-
-
 
 enum Provider {
   Google
