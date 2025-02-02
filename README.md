@@ -5,8 +5,9 @@ A simple SaaS (Software as a Service) application built with modern web technolo
 🚀 Features
 
 User Authentication (Sign-up, Login, Logout)
-Dashboard for managing services
+Dashboard for managing streams 
 Responsive UI
+
 
 
 
